@@ -1,3 +1,37 @@
+<?php 
+    require_once("phpMail/PHPMailerAutoload.php");
+    if (isset($_REQUEST['form-submit'])) {
+        
+        $mail = new PHPMailer;
+
+        $mail->Host="smtp.gmail.com";
+        $mail->Port=587;
+        $mail->SMTPAuth=true;
+        $mail->SMTPSecure="tls";
+        $mail->Username="hasibahmed885@gmail.com";
+        $mail->Password="ahmedhasib970556";
+
+        $mail->setFrom($_REQUEST['name'],$_REQUEST['email']);
+        $mail->addAddress("hasibahmed885@gmail.com");
+        $mail->addReplyTo($_REQUEST['name'],$_REQUEST['email']);
+
+        $mail->isHTML(true);
+        $mail->Subject="From Submission: ".$_REQUEST['subject'];
+        $mail->Body='<h2>Name: '.$_REQUEST['name'].'<br>Email: '.$_REQUEST['email'].'<br>Phone: '.$_REQUEST['phone'].'<br>Message: '.$_REQUEST['message'].'</h2>' ;
+
+        if ($mail->send()==true) {
+            header("location: index.php?mailSendSuccessfull");
+            exit();
+        }
+        else{
+            header("location: index.php?mailSendFailed");
+            exit();
+        }
+
+    }
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +90,6 @@
         </button>
 
         <div class="collapse navbar-collapse" id="submenu">
-
 
         <div id="actionbar" class="d-block d-lg-none">
                 <div class="container p-0 pt-1">
@@ -283,12 +316,19 @@
                 <div class="our-service rounded" data-aos="fade-right">
                     <div class="p-4 mt-4 ">
                         <h4>write to us</h4>
-                        <form action="">
-                            <input type="text" class="form-control" placeholder="vardas...">
-                            <input type="text" class="form-control" placeholder="Jusu E-mail'as...">
-                            <input type="text" class="form-control" placeholder="Telefono numeris...">
-                            <textarea name="" id="" cols="15" rows="3" placeholder="Message..." class="form-control"></textarea>
-                            <input type="submit" value="Send" class="btn btn-primary btn-sm">
+                        <form action="index.php" method="POST">
+                            <input type="text" name="name" class="form-control" placeholder="vardas...">
+                            <input type="email" name="email" class="form-control" placeholder="Jusu E-mail'as..." required>
+                            <input type="number" name="phone" class="form-control" placeholder="Telefono numeris...">
+                            <textarea  name="message" id="" cols="15" rows="3" placeholder="Message..." class="form-control"></textarea>
+                            <input type="submit" name="form-submit" value="Send" class="btn btn-primary btn-sm">
+                            <br>
+                            <?php 
+                                if (isset($_REQUEST['mailSendSuccessfull'])) {
+                                    echo "<h5 class='text-success'>Thank you for contact with us! We will inform you as soon as possible.</h5>";
+                                }
+
+                             ?>
                         </form>
                     </div>
                 </div>
@@ -349,10 +389,7 @@
 
     </div>
     </div>
-
-
 </div>
-
 
 <footer id="contact">
     <div class="container py-4">
