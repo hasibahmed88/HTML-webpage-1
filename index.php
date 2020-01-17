@@ -8,8 +8,8 @@
         $mail->Port=587;
         $mail->SMTPAuth=true;
         $mail->SMTPSecure="tls";
-        $mail->Username="hasibahmed885@gmail.com";
-        $mail->Password="ahmedhasib970556";
+        $mail->Username="yourcompany@gmail.com";
+        $mail->Password="gmailpassword";
 
         $mail->setFrom($_REQUEST['name'],$_REQUEST['email']);
         $mail->addAddress("hasibahmed885@gmail.com");
