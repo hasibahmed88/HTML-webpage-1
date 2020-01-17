@@ -1,0 +1,75 @@
+html{
+	scroll-behavior: smooth;
+}
+body{
+	margin:0;
+	padding:0;
+	font-size:16px;
+}
+#actionbar{
+	background: #F2F3F6;
+	font-size:14px;
+}
+.navigation{
+	box-shadow: 0px 15px 20px 0px #00000050;
+}
+.navbar{
+	margin:0;
+	padding:0;
+	
+}
+.navbar ul li a{
+	padding:30px 0px;
+	border-top:1px solid transparent;
+	font-size:16px;
+}
+
+.our-service{
+	background: #e6f1f5;
+}
+.our-service:hover{
+	background: #038ed3;
+}
+.our-service:hover h4{
+	color:#fff;
+	transition:.4s;
+}
+
+
+.about-card{
+	border:2px solid #1a7dae;
+	transition:.4s;
+}
+.about-card:hover{
+	background: #1a7dae;
+	color:#fff;
+}
+#s6{
+	height: 650px;
+	overflow: hidden;
+
+}
+
+
+#s6 img{
+	width:100%;
+	height: 650px;
+
+}
+
+
+footer{
+	background: #136594;
+	color:#ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
